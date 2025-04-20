@@ -38,7 +38,7 @@
   - `requests`：HTTP请求库
   - `selenium`：浏览器自动化工具（需配置ChromeDriver）
   - `Bio`：NCBI Entrez接口
-
+由于权限问题，只选择爬取标题作者摘要，然后进行人工收集
 
 ### 2. 文本清洗模块（`data_clean.py`）
 - **功能**：对爬取的PDF文献进行文本提取、去除页眉页脚/参考文献、清洗特殊字符及自然语言处理（NLP）。
