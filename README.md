@@ -19,6 +19,10 @@
 | `medical_doc/`      | 原始文献存储文件夹，自动保存爬取的PDF文献                                 |
 | `medical_doc_cleaned/` | 清洗后文献存储文件夹，保存预处理后的文本数据                            |
 
+注：medical_doc只展示了少部分原始文献，具体内容通过可通过百度网盘提取
+链接: https://pan.baidu.com/s/1UooCaatTwlcX3hvLdmMicw?pwd=wdau 提取码: wdau 
+
+
 
 ## 三、核心功能模块
 
