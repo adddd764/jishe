@@ -85,11 +85,11 @@
   - `assoc_with`：基因/蛋白质→关联疾病
   - 以下为知识图谱示例，展示了不同实体之间的关系：
   - 知识图谱 1：这张图谱展示了多种实体间的复杂关联。可以看到不同颜色的节点代表不同类型的实体，如基因、化合物等。节点之间的连线表示它们的关系，例如某些基因与化合物之间存在调控关系，反映了在 Tau 蛋白自噬调控通路中，化合物可能通过作用于特定基因来影响通路的运行。这些关系是基于生物医学研究文献和实验数据提取构建的，为深入理解通路机制提供了直观的可视化呈现。
-  - <img width="868" alt="d57520ca07e5af58b198aa4cd6360b3" src="https://github.com/user-attachments/assets/b62780b5-9a9f-48f6-9746-70fee9902e1f" />
+   <img width="868" alt="d57520ca07e5af58b198aa4cd6360b3" src="https://github.com/user-attachments/assets/b62780b5-9a9f-48f6-9746-70fee9902e1f" />
   -知识图谱 2：该图谱聚焦于部分基因、化合物与疾病之间的联系。从中能够观察到特定基因与疾病的关联，以及化合物在其中可能起到的干预作用。比如，某些基因的异常表达可能与阿尔茨海默病等疾病相关，而化合物可能通过调节这些基因的表达来影响疾病进程。图谱清晰地呈现了这些实体和关系，有助于研究人员挖掘潜在的治疗靶点和干预策略。
-  -<img width="750" alt="df64da36a96034416d81d4a11786b73" src="https://github.com/user-attachments/assets/299821d7-8b09-4d23-a375-c53d4c9f5c53" />
+  <img width="750" alt="df64da36a96034416d81d4a11786b73" src="https://github.com/user-attachments/assets/299821d7-8b09-4d23-a375-c53d4c9f5c53" />
   -知识图谱 3：此图谱进一步展示了不同实体的相互作用网络。在 Tau 蛋白自噬调控通路的背景下，体现了基因、化合物之间的协同或拮抗关系。例如，一些基因之间可能存在相互调控，而化合物可能会影响这种调控关系。通过对该图谱的分析，可以探索通路中各要素的动态变化，为相关疾病的研究和药物研发提供线索。
-  -<img width="846" alt="4c49af91db76ac5b4c55bfbf443ddcf" src="https://github.com/user-attachments/assets/19b50e4c-3943-4a97-aea2-c6dfa316a25a" />
+  <img width="846" alt="4c49af91db76ac5b4c55bfbf443ddcf" src="https://github.com/user-attachments/assets/19b50e4c-3943-4a97-aea2-c6dfa316a25a" />
 
 - **运行命令**：
   ```python
