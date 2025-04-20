@@ -81,6 +81,10 @@
   - `targets`：化合物→靶点（基因/蛋白质）
   - `involved_in`：实体→参与通路
   - `assoc_with`：基因/蛋白质→关联疾病
+  - 以下为知识图谱示例，展示了不同实体之间的关系：
+  - 知识图谱 1：
+  - <img width="868" alt="d57520ca07e5af58b198aa4cd6360b3" src="https://github.com/user-attachments/assets/b62780b5-9a9f-48f6-9746-70fee9902e1f" />
+
 - **运行命令**：
   ```python
   python build_graph.py  # 需提前配置Neo4j连接参数（bolt://localhost:7687，用户名/密码）
