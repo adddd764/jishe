@@ -1,0 +1,399 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: TauClear
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/ollama:0.0.3@9ded90ac00e8510119a24be7396ba77191c9610d5e1e29f59d68fa1229822fc7
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: knowledge-retrieval
+      id: 1744530849007-source-1744530853785-target
+      source: '1744530849007'
+      sourceHandle: source
+      target: '1744530853785'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: http-request
+      id: 1744800403724-source-1744800413509-target
+      source: '1744800403724'
+      sourceHandle: source
+      target: '1744800413509'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: http-request
+        targetType: variable-aggregator
+      id: 1744800413509-source-1744800401264-target
+      source: '1744800413509'
+      sourceHandle: source
+      target: '1744800401264'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: parameter-extractor
+      id: 1744530849007-source-1744800403724-target
+      source: '1744530849007'
+      sourceHandle: source
+      target: '1744800403724'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: variable-aggregator
+      id: 1744530853785-source-1744800401264-target
+      source: '1744530853785'
+      sourceHandle: source
+      target: '1744800401264'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: variable-aggregator
+        targetType: llm
+      id: 1744800401264-source-1744800459461-target
+      source: '1744800401264'
+      sourceHandle: source
+      target: '1744800459461'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1744800459461-source-1744801090449-target
+      source: '1744800459461'
+      sourceHandle: source
+      target: '1744801090449'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: question
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: question
+      height: 89
+      id: '1744530849007'
+      position:
+        x: 25.75791968196347
+        y: 299.6089243485193
+      positionAbsolute:
+        x: 25.75791968196347
+        y: 299.6089243485193
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        dataset_ids:
+        - 300f9303-9182-4b9c-b80d-b4100bbb45c2
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: weighted_score
+          top_k: 4
+          weights:
+            keyword_setting:
+              keyword_weight: 0.3
+            vector_setting:
+              embedding_model_name: nomic-embed-text:latest
+              embedding_provider_name: langgenius/ollama/ollama
+              vector_weight: 0.7
+        query_variable_selector:
+        - '1744530849007'
+        - question
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索
+        type: knowledge-retrieval
+      height: 91
+      id: '1744530853785'
+      position:
+        x: 378.2111384507082
+        y: 210.94012759389017
+      positionAbsolute:
+        x: 378.2111384507082
+        y: 210.94012759389017
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        advanced_settings:
+          group_enabled: true
+          groups:
+          - groupId: c6547a8f-c02d-4e6d-960d-09bc023b01e4
+            group_name: Group1
+            output_type: string
+            variables:
+            - - '1744800413509'
+              - body
+          - groupId: b5d2317c-1509-4567-ada1-a3b908449c49
+            group_name: Group2
+            output_type: array[object]
+            variables:
+            - - '1744530853785'
+              - result
+        desc: ''
+        output_type: any
+        selected: false
+        title: 变量聚合器
+        type: variable-aggregator
+        variables: []
+      height: 158
+      id: '1744800401264'
+      position:
+        x: 708.950928985228
+        y: 284.84322114138627
+      positionAbsolute:
+        x: 708.950928985228
+        y: 284.84322114138627
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        instruction: 你是一个医药学相关的知识图谱专家，根据这个问题{{#1744530849007.question#}}提问提取相关词，查询知识图谱，直接输出提取的词，注意是词，不是句子，不需要任何多余内容。
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-r1:7b
+          provider: langgenius/ollama/ollama
+        parameters:
+        - description: 问题中提取关键词
+          name: law
+          required: false
+          type: string
+        query:
+        - '1744530849007'
+        - question
+        reasoning_mode: prompt
+        selected: false
+        title: 参数提取器
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1744800403724'
+      position:
+        x: 213.66854686064016
+        y: 452.7190427859201
+      positionAbsolute:
+        x: 213.66854686064016
+        y: 452.7190427859201
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - type: text
+            value: "{\n    \"statements\": [{\n      \"statement\": \"MATCH (n) RETURN\
+              \ n\",\n      \"resultDataContents\": [\"row\", \"graph\"]\n    }]\n\
+              \  }"
+          type: raw-text
+        desc: ''
+        headers: 'Accept:application/json
+
+          Content-Type:application/json'
+        method: POST
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求
+        type: http-request
+        url: http://26.200.147.168:7474/db/neo4j/tx/commit
+        variables: []
+      height: 134
+      id: '1744800413509'
+      position:
+        x: 536.6634730473033
+        y: 468.0724171067616
+      positionAbsolute:
+        x: 536.6634730473033
+        y: 468.0724171067616
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1744800401264'
+          - Group2
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.3
+          mode: chat
+          name: deepseek-r1:7b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: 73c1cd11-1c16-4d18-b565-68fa7db9e7f8
+          role: system
+          text: "# 角色 : 信号通路多维度评估专家\n- 核心职能: 基于药物开发全流程要素的系统性通路优选\n根据{{#1744800401264.Group1#}}/和{{#context#}}回答问题\n\
+            ## 背景信息 :/\n用户需要从候选通路中筛选出最具开发潜力的靶向治疗路径，需综合考量靶点生物学、成药性指标、实验证据链及开发风险三个维度。\n\
+            \n## 命名规范 :\n### 标准命名规则\n1. **核心组件优先**：选择通路中两个关键调控基因（HGNC命名）\n   - 示例：ULK1-ATG5、Beclin1-PI3K、AMPK-mTOR\n\
+            2. **作用阶段标注**（可选）：\n   - 自噬启动：ULK1-ATG5_AutophagyInitiation\n   - 能量感应：AMPK-mTOR_EnergySensing\n\
+            \n### 验证标准\n1. KEGG通路数据库匹配验证\n2. 必需包含至少1个自噬核心基因（ULK1/Beclin1/ATG5/LC3）\n\
+            3. 基因间有直接物理互作（STRING数据库Confidence>0.7）\n\n## 评估指标体系 :\n**核心指标 (权重 80%)**\n\
+            1. 靶点验证度 (0.40)\n   - 文献证据：近5年高质量研究数量（IF>10期刊×2，临床研究×3）\n   - 遗传证据：基因敲除表型显著性（1-5级评分）\n\
+            \   - 临床相关性：患者组织表达差异倍数（log2FC≥1.5）\n\n2. 成药性指数 (0.20)\n   - 结合能：分子对接得分（归一化至0-1）\n\
+            \   - 选择性：同家族蛋白Δ结合能≥3 kcal/mol\n   - 可开发性：已知活性化合物数量（商业可购×1.5）\n\n3. 实验成熟度\
+            \ (0.40)\n   - 体外验证：细胞模型重复成功率（≥3次独立实验）\n   - 体内验证：动物模型疗效显著性（p值阶梯加权）\n\
+            \   - 转化研究：已有先导化合物开发阶段（临床前×1，Ⅰ期×2）\n\n**风险修正因子 (权重 20%)**\n1. 安全性风险：肝/肾毒性指数（LD50≤100\
+            \ mg/kg ×1.5）\n2. 技术瓶颈：冷冻电镜结构解析难度（分辨率＞3Å ×1.3）\n3. 通路串扰风险：非靶向自噬激活（LC3-II/Ⅰ比值＞5）\n\
+            \n## 数据处理规范 :\n1. 归一化方法：采用Z-score标准化处理各维度数据\n2. 证据分级：\n   - A级：≥3篇独立团队验证\
+            \ + 机制研究\n   - B级：2篇相互印证研究 + 表型数据\n   - C级：单篇预印本报道\n3. 风险量化：\n   - 高风险：同时触发LC3异常激活+毒性风险\n\
+            \   - 中风险：单一关键风险因子\n   - 低风险：可规避技术风险\n综合评分公式：(靶点验证度×0.40 + 成药性指数×0.20\
+            \ + 实验成熟度×0.40) × 0.8 + 风险修正因子×0.2\n## 输出要求 :\n1. 排序表格：包含各通路网络图可视化链接\n\
+            2. 证据摘要：标注关键研究的DOI及实验模型\n3. 风险矩阵：按机制特异性/脱靶效应双维度分析\n4. 开发路线：推荐靶向性验证实验序列\n\
+            \n## 示例优化 :\n```markdown\n### 1. ULK1-ATG5通路 [▲首选]\n**命名验证**：\n- KEGG通路：hsa04140\
+            \ (Autophagy - animal)\n- 核心互作：ULK1-ATG5 (STRING score 0.92)\n\n**综合评分**:\
+            \ 8.7/10  \n- 靶点验证度：9.2（10篇A级证据，包括3篇Nature子刊）\n- 成药性指数：8.5（结合能-9.8kcal/mol，选择性Δ4.2）\n\
+            - 实验成熟度：8.0（PDX模型p=0.003）\n\n**风险修正**：  \n⚠️ LC3-II/Ⅰ=6.2（需剂量优化）  \n**验证路线**：\
+            \  \n1. 开展自噬流动态监测（mCherry-GFP-LC3）  \n2. 进行hERG抑制实验（IC50检测）  "
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1744800459461'
+      position:
+        x: 1017.3127122503968
+        y: 294.69475643747467
+      positionAbsolute:
+        x: 1017.3127122503968
+        y: 294.69475643747467
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1744800459461'
+          - text
+          variable: text
+        selected: false
+        title: 结束
+        type: end
+      height: 89
+      id: '1744801090449'
+      position:
+        x: 1331.8012349361086
+        y: 313.8222084437805
+      positionAbsolute:
+        x: 1331.8012349361086
+        y: 313.8222084437805
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: 119.5400431947719
+      y: -5.645346964645228
+      zoom: 0.6597539553864482

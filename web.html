@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>认知守护 | 阿尔茨海默病科普平台</title>
+    <link href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.staticfile.org/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@latest/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --secondary: #10B981;
+            --accent: #F59E0B;
+            --text-primary: #1F2937;
+            --bg-primary: #FFFFFF;
+        }
+        
+        .font-serif { font-family: 'Noto Serif SC', serif; }
+        .font-sans { font-family: 'Noto Sans SC', sans-serif; }
+        
+        /* 自定义渐变背景 */
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.95), rgba(16, 185, 129, 0.90));
+        }
+        
+        /* 卡片悬停效果 */
+        .hover-card {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* 导航栏样式 */
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* 数据统计卡片 */
+        .stat-card {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* 滚动条美化 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+        
+        /* Dify 聊天机器人样式 */
+        #dify-chatbot-bubble-button {
+            background-color: #1C64F2 !important;
+        }
+        
+        #dify-chatbot-bubble-window {
+            width: 24rem !important;
+            height: 40rem !important;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- 导航栏 -->
+    <nav class="fixed w-full bg-white/80 backdrop-blur-lg z-50 shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-brain text-primary text-2xl"></i>
+                <span class="font-serif text-xl font-bold">认知守护</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-6">
+                <a href="#about" class="nav-link">关于疾病</a>
+                <a href="#diagnosis" class="nav-link">诊断评估</a>
+                <a href="#treatment" class="nav-link">治疗方案</a>
+                <a href="#prevention" class="nav-link">预防指南</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-gradient min-h-screen flex items-center pt-16">
+        <div class="container mx-auto px-4 py-20">
+            <div class="text-center text-white mb-16">
+                <h1 class="font-serif text-5xl md:text-7xl font-bold mb-6">守护记忆 关爱生命</h1>
+                <p class="text-xl md:text-2xl opacity-90 max-w-2xl mx-auto">
+                    让我们携手共同了解阿尔茨海默病，为患者及家属提供专业的知识支持与关怀
+                </p>
+            </div>
+            
+            <!-- 统计数据卡片 -->
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="stat-card rounded-xl p-6 text-center text-white hover-card">
+                    <i class="fas fa-globe text-3xl mb-4"></i>
+                    <h3 class="text-lg font-medium mb-2">全球患者数量</h3>
+                    <p class="text-3xl font-bold">5000万+</p>
+                </div>
+                <!-- 新增卡片：危害重 -->
+                <div class="stat-card rounded-xl p-6 text-center text-white hover-card">
+                    <i class="fas fa-exclamation-triangle text-3xl mb-4"></i>
+                    <h3 class="text-lg font-medium mb-2">危害重</h3>
+                    <p class="text-lg">丧失自理能力</p>
+                </div>
+                <!-- 新增卡片：治疗难 -->
+                <div class="stat-card rounded-xl p-6 text-center text-white hover-card">
+                    <i class="fas fa-stethoscope text-3xl mb-4"></i>
+                    <h3 class="text-lg font-medium mb-2">治疗难</h3>
+                    <p class="text-lg">尚无有效治疗方案</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main class="py-16">
+        <!-- 关于疾病 -->
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="font-serif text-4xl font-bold text-center mb-12">关于阿尔茨海默病</h2>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6">
+                        <div class="hover-card p-6 bg-gray-50 rounded-xl">
+                            <h3 class="text-xl font-bold mb-4 text-primary">
+                                <i class="fas fa-info-circle mr-2"></i>什么是阿尔茨海默病？
+                            </h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                阿尔茨海默病（Alzheimer's disease, AD），俗称老年痴呆症，是一种逐渐发展的神经系统退行性疾病。它主要影响记忆、思维和行为，并且是老年人中最常见的痴呆形式。随着病情的发展，患者的日常生活能力会逐渐下降。
+                            </p>
+                        </div>
+                        <div class="hover-card p-6 bg-gray-50 rounded-xl">
+                            <h3 class="text-xl font-bold mb-4 text-primary">
+                                <i class="fas fa-chart-line mr-2"></i>疾病发展阶段
+                            </h3>
+                            <div class="space-y-4">
+                                <div class="border-l-4 border-blue-500 pl-4">
+                                    <h4 class="font-bold text-primary mb-2">早期症状</h4>
+                                    <p>包括记忆力减退，尤其是短期记忆；难以完成熟悉的任务；时间或地点混淆等。</p>
+                                </div>
+                                <div class="border-l-4 border-yellow-500 pl-4">
+                                    <h4 class="font-bold text-primary mb-2">中期症状</h4>
+                                    <p>随着疾病的进展，患者可能会经历更严重的混淆，无法识别亲近的人，甚至出现人格改变或妄想。</p>
+                                </div>
+                                <div class="border-l-4 border-red-500 pl-4">
+                                    <h4 class="font-bold text-primary mb-2">晚期症状</h4>
+                                    <p>最终，患者可能几乎完全失去与外界交流的能力，身体机能衰退严重，需要全天候护理。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mermaid">
+                        graph TD
+                            A[阿尔茨海默病] --> B(病理特征)
+                            A --> C(临床表现)
+                            B --> D[β淀粉样蛋白沉积]
+                            B --> E[Tau蛋白缠结]
+                            C --> F[记忆力减退]
+                            C --> G[认知功能障碍]
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 诊断评估 -->
+        <section id="diagnosis" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="font-serif text-4xl font-bold text-center mb-12">诊断与评估</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="hover-card bg-white rounded-xl shadow-lg p-6">
+                        <i class="fas fa-notes-medical text-3xl text-primary mb-4"></i>
+                        <h3 class="text-xl font-bold mb-4">早期症状识别</h3>
+                        <ul class="space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>记忆力减退</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>执行功能障碍</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>语言能力改变</li>
+                        </ul>
+                    </div>
+                    <!-- 可以继续添加更多诊断相关的卡片 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 治疗方案 -->
+        <section id="treatment" class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="font-serif text-4xl font-bold text-center mb-12">治疗方案</h2>
+                
+                <!-- 治疗概述 -->
+                <div class="max-w-3xl mx-auto mb-12">
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        阿尔茨海默病（Alzheimer's disease, AD）目前无法治愈，但有一些治疗方案可以帮助缓解症状、改善患者的生活质量以及支持患者和他们的家庭。以下是一些常见的治疗方案：
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- 药物治疗 -->
+                    <div class="space-y-6">
+                        <div class="hover-card bg-gray-50 rounded-xl p-6">
+                            <h3 class="text-xl font-bold mb-4 text-primary">
+                                <i class="fas fa-pills mr-2"></i>药物治疗
+                            </h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-bold mb-2">胆碱酯酶抑制剂</h4>
+                                    <p>这类药物通过阻止乙酰胆碱的分解来增加大脑中这种神经递质的水平。常用药物包括：</p>
+                                    <ul class="list-disc list-inside ml-4 mt-2">
+                                        <li>多奈哌齐（Donepezil）</li>
+                                        <li>利凡斯的明（Rivastigmine）</li>
+                                        <li>加兰他敏（Galantamine）</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2">NMDA受体拮抗剂</h4>
+                                    <p>美金刚胺（Memantine）适用于中度到重度患者，通过调节谷氨酸活动来保护脑细胞。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 非药物干预 -->
+                    <div class="space-y-6">
+                        <div class="hover-card bg-gray-50 rounded-xl p-6">
+                            <h3 class="text-xl font-bold mb-4 text-primary">
+                                <i class="fas fa-hand-holding-heart mr-2"></i>非药物干预
+                            </h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-bold mb-2">认知刺激疗法</h4>
+                                    <p>包括记忆训练、问题解决练习等活动，可单独或小组进行。</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2">行为疗法</h4>
+                                    <p>帮助管理焦虑、抑郁、攻击性等行为问题，通常需要与心理治疗师合作。</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2">环境调整</h4>
+                                    <p>提供安全、舒适且易于导航的居住环境，包括移除危险物品、简化家居布置等。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 支持系统 -->
+                <div class="mt-8">
+                    <div class="hover-card bg-gray-50 rounded-xl p-6 max-w-3xl mx-auto">
+                        <h3 class="text-xl font-bold mb-4 text-primary">
+                            <i class="fas fa-hands-helping mr-2"></i>支持系统
+                        </h3>
+                        <p>
+                            家人、朋友和社会支持网络在照顾和支持阿尔茨海默病患者方面扮演着重要角色。加入支持团体也可以让患者家属获得宝贵的信息和情感支持。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 预防指南 -->
+        <section id="prevention" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="font-serif text-4xl font-bold text-center mb-12">预防指南</h2>
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="hover-card bg-white rounded-xl p-6 text-center">
+                        <i class="fas fa-heart text-4xl text-red-500 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-4">健康生活方式</h3>
+                        <p>保持规律作息，健康饮食习惯</p>
+                    </div>
+                    
+                    <div class="hover-card bg-white rounded-xl p-6 text-center">
+                        <i class="fas fa-users text-4xl text-blue-500 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-4">社交互动</h3>
+                        <p>保持活跃的社交生活，与家人朋友维持良好关系，并参与社区活动</p>
+                    </div>
+                    
+                    <div class="hover-card bg-white rounded-xl p-6 text-center">
+                        <i class="fas fa-brain text-4xl text-purple-500 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-4">持续学习</h3>
+                        <p>终身学习新技能、参与智力游戏（如拼图、数独）、阅读书籍或者参加教育课程等活动</p>
+                    </div>
+
+                    <!-- 新增戒烟限酒 -->
+                    <div class="hover-card bg-white rounded-xl p-6 text-center">
+                        <i class="fas fa-wine-bottle text-4xl text-yellow-500 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-4">戒烟限酒</h3>
+                        <p>吸烟和过量饮酒都是阿尔茨海默病的风险因素，戒烟和适量饮酒有助于降低患病风险。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="bg-gray-800 text-white py-8">
+            <div class="container mx-auto px-4">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h3 class="font-serif text-xl font-bold">认知守护</h3>
+                        <p class="text-gray-400">为阿尔茨海默病患者及其家属提供支持与帮助。</p>
+                    </div>
+                    <div class="space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">隐私政策</a>
+                        <a href="#" class="text-gray-400 hover:text-white">使用条款</a>
+                        <a href="#" class="text-gray-400 hover:text-white">联系我们</a>
+                    </div>
+                </div>
+                <div class="text-center text-gray-400 mt-4">
+                    &copy; 2023 认知守护. 保留所有权利.
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        window.difyChatbotConfig = {
+            token: 'bnb11kzZ4mmUiYAf',
+            baseUrl: 'http://localhost'
+        }
+    </script>
+    <script
+        src="http://localhost/embed.min.js"
+        id="bnb11kzZ4mmUiYAf"
+        defer>
+    </script>
+</body>
+</html>
