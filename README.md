@@ -1,4 +1,3 @@
-# jishe
 
 # Tau蛋白自噬调控通路知识图谱构建系统README
 
